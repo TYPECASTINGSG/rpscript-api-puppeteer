@@ -15,7 +15,7 @@ export default class RpsPuppeteer {
     if(ctx) ctx['puppeteer'] = new ChromeContext;
   }
 
-  @rpsAction({defaultName:'chrome'})
+  @rpsAction({verbName:'chrome'})
   async chrome (ctx:RpsContext, opts:any, ...arg:string[]) : Promise<Response> {
     let response = undefined;
     let rpsPuppeteerContext = ctx['puppeteer'];
@@ -33,52 +33,52 @@ export default class RpsPuppeteer {
     return response;
   }
 
-  @rpsAction({defaultName:'close'})
+  @rpsAction({verbName:'close'})
   close (ctx:RpsContext,opts:any) : Promise<void> {
     return RpsPuppeteer.util.close(ctx['puppeteer'],opts);
   }
 
-  @rpsAction({defaultName:'goto'})
+  @rpsAction({verbName:'goto'})
   goto (ctx:RpsContext,opts:any, url:string) : Promise<Response> {
     return RpsPuppeteer.util.goto(ctx['puppeteer'],opts,url);
   }
 
-  @rpsAction({defaultName:'click'})
+  @rpsAction({verbName:'click'})
   click (ctx:RpsContext,opts:any, selector:string) : Promise<void> {
     return RpsPuppeteer.util.click(ctx['puppeteer'],opts,selector);
   }
 
-  @rpsAction({defaultName:'type'})
+  @rpsAction({verbName:'type'})
   type (ctx:RpsContext,opts:any, selector:string, text:string) : Promise<void> {
     return RpsPuppeteer.util.type(ctx['puppeteer'],opts,selector,text);
   }
 
-  @rpsAction({defaultName:'eval'})
+  @rpsAction({verbName:'eval'})
   eval (ctx:RpsContext,opts:any, str:string) : Promise<any> {
     return RpsPuppeteer.util.evaluate(ctx['puppeteer'],opts,str);
   }
 
-  @rpsAction({defaultName:'pdf'})
+  @rpsAction({verbName:'pdf'})
   pdf (ctx:RpsContext,opts:any) : Promise<Buffer> {
     return RpsPuppeteer.util.pdf(ctx['puppeteer'],opts);
   }
 
-  @rpsAction({defaultName:'screenshot'})
+  @rpsAction({verbName:'screenshot'})
   screenshot (ctx:RpsContext,opts:any) : Promise<Buffer> {
     return RpsPuppeteer.util.screenshot(ctx['puppeteer'],opts);
   }
   
-  @rpsAction({defaultName:'$'})
+  @rpsAction({verbName:'$'})
   $(ctx:RpsContext, opts:any,selector:string) : Promise<ElementHandle> {
     return RpsPuppeteer.util.$(ctx['puppeteer'],opts,selector);
   }
 
-  @rpsAction({defaultName:'$$'})
+  @rpsAction({verbName:'$$'})
   $$(ctx:RpsContext, opts:any,selector:string) : Promise<ElementHandle[]> {
     return RpsPuppeteer.util.$$(ctx['puppeteer'],opts,selector);
   }
   
-  @rpsAction({defaultName:'emulate'})
+  @rpsAction({verbName:'emulate'})
   emulate (ctx:RpsContext,opts:any,device:string) : Promise<void> {
     if(device ==='screen' || device === 'print')
       return RpsPuppeteer.util.emulateMedia(ctx['puppeteer'],opts,device);
